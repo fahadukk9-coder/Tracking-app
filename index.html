@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Generate Link</title>
+</head>
+<body>
+
+<h2>Generate Tracking Link</h2>
+
+<input type="text" id="text" placeholder="Enter any text">
+<button onclick="generateLink()">Generate</button>
+
+<p id="result"></p>
+
+<script>
+function generateLink() {
+  const id = Math.random().toString(36).substring(7);
+  const link = "track.html?id=" + id;
+
+  document.getElementById("result").innerHTML = link;
+}
+</script>
+
+</body>
+</html>
